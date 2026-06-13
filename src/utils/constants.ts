@@ -25,7 +25,7 @@ export const INITIAL_MESSAGES: Message[] = [
   {
     id: "init-1",
     role: "model",
-    content: "Hello! I am your CarbonIQ Coach. Powered by Gemini-3.5 Intelligence, I leverage Canada and India's finest agricultural and supply chain lifecycle metrics.\n\nI monitor your scanned receipts, carbon twin trajectories, and municipal trends. Ask me anything, such as 'Why is my footprint increasing?', 'What should I replace first?', or 'Compare me with Bengaluru averages'.",
+    content: "Hello! I am your CarbonIQ Coach. Powered by Gemini-3.5 Intelligence, I leverage India's Carbon Intelligence Network agricultural and supply chain lifecycle metrics.\n\nI monitor your scanned receipts, carbon twin trajectories, and municipal trends. Ask me anything, such as 'Why is my footprint increasing?', 'What should I replace first?', or 'Compare me with Bengaluru averages'.",
     timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
   }
 ];

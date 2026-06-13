@@ -125,8 +125,9 @@ export const Sidebar = React.memo(function Sidebar({
           <div className="flex items-center gap-2 p-2 bg-[#12141c] border border-[#1e2230] rounded-lg text-xs">
             <MapPin className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
             <div className="flex-1 flex flex-col min-w-0">
-              <span className="text-[8px] text-zinc-500 font-mono uppercase">Emission Base node</span>
+              <label htmlFor="sidebar-city-select" className="text-[8px] text-zinc-500 font-mono uppercase cursor-pointer">Emission Base node</label>
               <select 
+                id="sidebar-city-select"
                 value={selectedCityNode}
                 onChange={(e) => {
                   setSelectedCityNode(e.target.value);

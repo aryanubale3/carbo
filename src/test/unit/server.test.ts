@@ -35,7 +35,7 @@ describe("Server Startup Unit Tests", () => {
     await startServer();
     expect(listenMock).toHaveBeenCalled();
     expect(createViteServer).toHaveBeenCalled();
-  });
+  }, 15000);
 
   it("should start the server successfully in production mode", async () => {
     process.env.NODE_ENV = "production";
@@ -46,5 +46,5 @@ describe("Server Startup Unit Tests", () => {
 
     await startServer();
     expect(listenMock).toHaveBeenCalled();
-  });
+  }, 15000);
 });

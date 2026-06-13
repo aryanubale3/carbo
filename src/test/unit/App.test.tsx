@@ -26,7 +26,7 @@ afterEach(() => {
 describe('CarbonIQ App Component Comprehensive Flow Coverage', () => {
 
   it('should render the sidebar and switch active tabs correctly', async () => {
-    const { getByText, getByRole } = render(<App />);
+    const { getByText, getByRole, getAllByText } = render(<App />);
 
     // Default tab is workspace playground
     expect(getByText('Invoice Capture Frame')).toBeInTheDocument();
@@ -46,6 +46,12 @@ describe('CarbonIQ App Component Comprehensive Flow Coverage', () => {
     const networkTab = getByRole('button', { name: 'Municipal Network' });
     fireEvent.click(networkTab);
     expect(getByText('Metropolitan Carbon Integration Grid')).toBeInTheDocument();
+
+    // Click on Pune node card to test click handler and state sync
+    const puneNode = getAllByText('Pune').find(el => el.tagName === 'SPAN')!;
+    fireEvent.click(puneNode);
+    const citySelect = getByRole('combobox', { name: 'Metropolitan Region Selector' }) as HTMLSelectElement;
+    expect(citySelect.value).toBe('Pune');
 
     // Switch to Action Campaigns
     const actionsTab = getByRole('button', { name: 'Action Campaigns' });
