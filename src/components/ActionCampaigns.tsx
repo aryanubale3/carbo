@@ -42,7 +42,12 @@ export const ActionCampaigns = React.memo(function ActionCampaigns({
     >
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-white uppercase font-sans">AI Campaign Action Engine</h2>
+          <h2 className="text-xl font-bold tracking-tight text-white uppercase font-sans flex items-center gap-2">
+            AI Campaign Action Engine
+            <span className="px-2 py-0.5 bg-emerald-950/45 border border-emerald-500/20 text-emerald-400 rounded-full text-[10px] font-mono font-bold select-none">
+              {userXP} XP
+            </span>
+          </h2>
           <p className="text-xs text-zinc-400 font-sans leading-relaxed">
             Translate lifestyle carbon calculations into actual committed micro-activities. Securing campaigns immediately updates your Twin forecasts.
           </p>

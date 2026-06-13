@@ -326,24 +326,28 @@ export function useCarbonIQ() {
   }, [registerScanResults]);
 
   const handleToggleMissionCommit = useCallback((id: string) => {
+    const targetMission = weeklyMissions.find(m => m.id === id);
+    if (!targetMission) return;
+
+    const nextCommit = !targetMission.isCommit;
+    let finalXP = userXP;
+    let finalAlt = altAdoptionPercent;
+
+    if (nextCommit) {
+      triggerToast(`Campaign Locked: '${targetMission.title}'. Optimized future trajectory improved!`, "info");
+      finalXP = userXP + 25;
+      setUserXP(finalXP);
+      finalAlt = Math.min(altAdoptionPercent + 15, 100);
+      setAltAdoptionPercent(finalAlt);
+    } else {
+      finalAlt = Math.max(altAdoptionPercent - 15, 0);
+      setAltAdoptionPercent(finalAlt);
+    }
+    
+    saveProfile(streakCount, finalXP, totalCarbonSaved, selectedCityNode);
+
     setWeeklyMissions(prev => prev.map(m => {
       if (m.id === id) {
-        const nextCommit = !m.isCommit;
-        let finalAlt = altAdoptionPercent;
-        let finalXP = userXP;
-        if (nextCommit) {
-          triggerToast(`Campaign Locked: '${m.title}'. Optimized future trajectory improved!`, "info");
-          finalXP = userXP + 25;
-          setUserXP(finalXP);
-          finalAlt = Math.min(altAdoptionPercent + 15, 100);
-          setAltAdoptionPercent(finalAlt);
-        } else {
-          finalAlt = Math.max(altAdoptionPercent - 15, 0);
-          setAltAdoptionPercent(finalAlt);
-        }
-        
-        saveProfile(streakCount, finalXP, totalCarbonSaved, selectedCityNode);
-
         return {
           ...m,
           isCommit: nextCommit,
@@ -352,7 +356,7 @@ export function useCarbonIQ() {
       }
       return m;
     }));
-  }, [streakCount, userXP, totalCarbonSaved, selectedCityNode, saveProfile, triggerToast, altAdoptionPercent, setAltAdoptionPercent, setUserXP]);
+  }, [weeklyMissions, streakCount, userXP, totalCarbonSaved, selectedCityNode, saveProfile, triggerToast, altAdoptionPercent, setAltAdoptionPercent, setUserXP]);
 
   return {
     activeTab,

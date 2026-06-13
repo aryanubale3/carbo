@@ -1,4 +1,3 @@
-import { ReceiptItem } from "../types";
 
 const DAIRY_REDUCTION_MAX_IMPACT = 120;
 const ALT_ADOPTION_MAX_IMPACT = 90;

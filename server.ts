@@ -64,7 +64,7 @@ const PORT = 3000;
 
 app.use(express.json({ limit: "50mb" }));
 
-app.use((req, res, next) => {
+app.use((_req, res, next) => {
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("X-Frame-Options", "DENY");
   res.setHeader("X-XSS-Protection", "1; mode=block");
@@ -106,10 +106,10 @@ app.post("/api/get-signed-url", async (req, res) => {
 });
 
 // Mock uploading endpoint for offline/fallback/test suite use
-app.put("/api/mock-upload", (req, res) => {
+app.put("/api/mock-upload", (_req, res) => {
   res.sendStatus(200);
 });
-app.get("/api/mock-upload", (req, res) => {
+app.get("/api/mock-upload", (_req, res) => {
   res.sendStatus(200);
 });
 
@@ -152,7 +152,7 @@ app.post("/api/chat", async (req, res) => {
 });
 
 // API Route: Retrieve live city benchmarks from BigQuery
-app.get("/api/city-benchmarks", async (req, res) => {
+app.get("/api/city-benchmarks", async (_req, res) => {
   try {
     const benchmarks = await getCityBenchmarks();
     return res.json(benchmarks);
@@ -201,7 +201,7 @@ async function startServer() {
     console.log("Enabling production mode with secure static distribution of optimized client assets...");
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
-    app.get('*', (req, res) => {
+    app.get('*', (_req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }

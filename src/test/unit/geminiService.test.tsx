@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { getGeminiClient, processReceiptScan, processChat, sampleData } from "../../services/geminiService";
+import { getGeminiClient, processReceiptScan, processChat } from "../../services/geminiService";
 
 describe("GeminiService Unit Tests", () => {
   const originalEnv = process.env;
@@ -45,27 +45,27 @@ describe("GeminiService Unit Tests", () => {
 
     // Test why/footprint queries
     const resultWhy = await processChat({
-      messages: [{ role: "user", content: "Why is my carbon footprint increasing?" }],
-      scanHistory: [{ id: "1", name: "Pure Cow Ghee", co2: 4.8, category: "Fats", alternative: "Mustard Oil" }]
+      messages: [{ id: "test-m1", role: "user", content: "Why is my carbon footprint increasing?", timestamp: "12:00 PM" }],
+      scanHistory: [{ id: "1", name: "Pure Cow Ghee", co2: 4.8, category: "Fats", alternative: "Mustard Oil", quantity: "500g", ecoRating: "E" }]
     });
     expect(resultWhy.text).toContain("Ghee Carbon Premium");
 
     // Test replace suggestions
     const resultReplace = await processChat({
-      messages: [{ role: "user", content: "What should I replace first?" }],
-      scanHistory: [{ id: "1", name: "Fresh Paneer", co2: 2.8, category: "Dairy", alternative: "Tofu" }]
+      messages: [{ id: "test-m2", role: "user", content: "What should I replace first?", timestamp: "12:00 PM" }],
+      scanHistory: [{ id: "1", name: "Fresh Paneer", co2: 2.8, category: "Dairy", alternative: "Tofu", quantity: "500g", ecoRating: "C" }]
     });
     expect(resultReplace.text).toContain("Swap");
 
     // Test low cost/money reduction
     const resultMoney = await processChat({
-      messages: [{ role: "user", content: "How to reduce without spending money?" }]
+      messages: [{ id: "test-m3", role: "user", content: "How to reduce without spending money?", timestamp: "12:00 PM" }]
     });
     expect(resultMoney.text).toContain("No-Cost and Low-Cost Mitigation Steps");
 
     // Test city comparisons
     const resultCity = await processChat({
-      messages: [{ role: "user", content: "compare with bengaluru" }]
+      messages: [{ id: "test-m4", role: "user", content: "compare with bengaluru", timestamp: "12:00 PM" }]
     });
     expect(resultCity.text).toContain("Bengaluru Avg");
   });

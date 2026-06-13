@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronRight, Database, CheckCircle, Loader2, X } from "lucide-react";
 import { useCarbonIQ } from "./hooks/useCarbonIQ";
+import { TabKey } from "./types";
 import { Sidebar } from "./components/Sidebar";
 import { WorkspaceScanner } from "./components/WorkspaceScanner";
 const CarbonTwin = React.lazy(() => import("./components/CarbonTwin").then(m => ({ default: m.CarbonTwin })));
@@ -24,9 +25,7 @@ export default function App() {
     selectedCityNode,
     setSelectedCityNode,
     streakCount,
-    setStreakCount,
     userXP,
-    setUserXP,
     totalCarbonSaved,
     activeToast,
     receiptsHistory,
@@ -123,7 +122,7 @@ export default function App() {
               <div className="lg:hidden flex items-center gap-1 bg-[#12141c] border border-[#1e2230] px-2 py-1 rounded text-xs select-none">
                 <select 
                   value={activeTab}
-                  onChange={(e) => setActiveTab(e.target.value as any)}
+                  onChange={(e) => setActiveTab(e.target.value as TabKey)}
                   className="bg-transparent text-xs font-mono font-bold text-emerald-400 border-none outline-none cursor-pointer focus:ring-0 p-0 block leading-tight"
                   aria-label="Mobile Navigation Selector"
                 >

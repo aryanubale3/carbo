@@ -56,7 +56,7 @@ export const sampleData: Record<string, { items: ReceiptItem[]; totalCo2: number
   }
 };
 
-export async function processReceiptScan({ imageBase64, mimeType, sampleId, rawText, gcsUrl }: { imageBase64?: string; mimeType?: string; sampleId?: string; rawText?: string; gcsUrl?: string }) {
+export async function processReceiptScan({ imageBase64, mimeType, sampleId, rawText }: { imageBase64?: string; mimeType?: string; sampleId?: string; rawText?: string; gcsUrl?: string }) {
   if (sampleId && sampleData[sampleId]) {
     return sampleData[sampleId];
   }

@@ -8,7 +8,7 @@ vi.mock("vite", async (importOriginal) => {
   return {
     ...actual,
     createServer: vi.fn().mockResolvedValue({
-      middlewares: (req: any, res: any, next: any) => next()
+      middlewares: (_req: any, _res: any, next: any) => next()
     })
   };
 });
@@ -27,7 +27,7 @@ describe("Server Startup Unit Tests", () => {
 
   it("should start the server successfully in development mode", async () => {
     process.env.NODE_ENV = "development";
-    const listenMock = (vi.spyOn(app, "listen") as any).mockImplementation((port: any, host: any, cb: any) => {
+    const listenMock = (vi.spyOn(app, "listen") as any).mockImplementation((_port: any, _host: any, cb: any) => {
       if (cb) cb();
       return {} as any;
     });
@@ -39,7 +39,7 @@ describe("Server Startup Unit Tests", () => {
 
   it("should start the server successfully in production mode", async () => {
     process.env.NODE_ENV = "production";
-    const listenMock = (vi.spyOn(app, "listen") as any).mockImplementation((port: any, host: any, cb: any) => {
+    const listenMock = (vi.spyOn(app, "listen") as any).mockImplementation((_port: any, _host: any, cb: any) => {
       if (cb) cb();
       return {} as any;
     });
