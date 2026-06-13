@@ -12,6 +12,11 @@ interface CarbonTwinProps {
   setEnergyTransitionActive: (val: boolean) => void;
   triggerToast: (msg: string, type?: "success" | "info") => void;
 }
+const currentTwinProjections: Record<number, number> = {
+  2026: 420,
+  2027: 510,
+  2028: 590
+};
 
 export const CarbonTwin = React.memo(function CarbonTwin({
   dairyReductionPercent,
@@ -22,19 +27,13 @@ export const CarbonTwin = React.memo(function CarbonTwin({
   setEnergyTransitionActive,
   triggerToast,
 }: CarbonTwinProps) {
-  const currentTwinProjections = React.useMemo(() => ({
-    2026: 420,
-    2027: 510,
-    2028: 590
-  }), []);
-
   const optimizedTwinProjections = React.useMemo(() => {
     return {
       2026: calcTwin(2026, currentTwinProjections, dairyReductionPercent, altAdoptionPercent, energyTransitionActive),
       2027: calcTwin(2027, currentTwinProjections, dairyReductionPercent, altAdoptionPercent, energyTransitionActive),
       2028: calcTwin(2028, currentTwinProjections, dairyReductionPercent, altAdoptionPercent, energyTransitionActive)
     };
-  }, [dairyReductionPercent, altAdoptionPercent, energyTransitionActive, currentTwinProjections]);
+  }, [dairyReductionPercent, altAdoptionPercent, energyTransitionActive]);
 
   const twinDifference2028 = currentTwinProjections[2028] - optimizedTwinProjections[2028];
 

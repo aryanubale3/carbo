@@ -11,6 +11,13 @@ interface AICoachProps {
   sendChatMessage: (text: string) => void;
 }
 
+const presetQueries = [
+  "Why is my footprint increasing?",
+  "What should I replace first?",
+  "How can I reduce emissions without spending more money?",
+  "Compare me with users in my city."
+];
+
 export const AICoach = React.memo(function AICoach({
   messages,
   chatInput,
@@ -23,13 +30,6 @@ export const AICoach = React.memo(function AICoach({
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isChatTyping]);
-
-  const presetQueries = [
-    "Why is my footprint increasing?",
-    "What should I replace first?",
-    "How can I reduce emissions without spending more money?",
-    "Compare me with users in my city."
-  ];
 
   return (
     <motion.div 

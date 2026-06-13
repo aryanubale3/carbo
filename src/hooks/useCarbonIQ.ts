@@ -31,7 +31,6 @@ export function useCarbonIQ() {
   const [receiptsHistory, setReceiptsHistory] = useState<AnalysisResult[]>(INITIAL_RECEIPTS_HISTORY);
 
   const [uploadProgress, setUploadProgress] = useState<string | null>(null);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState<boolean>(false);
   const [scanResult, setScanResult] = useState<AnalysisResult>(INITIAL_SCAN_RESULT);
 
@@ -204,7 +203,6 @@ export function useCarbonIQ() {
   }, []);
 
   const handleFileProcessing = useCallback(async (file: File) => {
-    setSelectedFile(file);
     setPipelineActive(true);
     setPipelineStep(1);
     setUploadProgress("Scanning image content...");

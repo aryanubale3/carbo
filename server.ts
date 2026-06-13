@@ -18,6 +18,7 @@ async function initializeFirebaseAdmin() {
     let credential;
     if (process.env.USE_SECRET_MANAGER === "true") {
       try {
+        // @ts-ignore
         const { SecretManagerServiceClient } = await import("@google-cloud/secret-manager");
         const client = new SecretManagerServiceClient();
         const name = `projects/${process.env.GCP_PROJECT_ID}/secrets/FIREBASE_SERVICE_ACCOUNT_KEY/versions/latest`;

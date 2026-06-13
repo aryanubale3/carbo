@@ -12,12 +12,13 @@ interface ScannerPresetsProps {
   triggerSampleScan: (sampleId: string) => void;
 }
 
+const PRESETS: Preset[] = [
+  { id: "bengaluru-cafe", name: "Bengaluru Café Receipt", label: "LATTE_STK", color: "bg-sky-950/40 text-[#3b82f6] border border-[#3b82f6]/20", desc: "500ml Milk curd, Paneer fat segments..." },
+  { id: "mumbai-mart", name: "Mumbai Grocery Mart", label: "GHEE_LOAD", color: "bg-amber-950/40 text-amber-500 border border-amber-500/20", desc: "Aged Basmati, Cow ghee portions, Honey..." },
+  { id: "pune-dairy", name: "Pune Household Dairy", label: "LACT_AVD", color: "bg-emerald-950/40 text-[#10b981] border border-emerald-500/20", desc: "Packet butter, Fermented yogurt..." }
+];
+
 export const ScannerPresets: React.FC<ScannerPresetsProps> = React.memo(({ triggerSampleScan }) => {
-  const PRESETS: Preset[] = [
-    { id: "bengaluru-cafe", name: "Bengaluru Café Receipt", label: "LATTE_STK", color: "bg-sky-950/40 text-[#3b82f6] border border-[#3b82f6]/20", desc: "500ml Milk curd, Paneer fat segments..." },
-    { id: "mumbai-mart", name: "Mumbai Grocery Mart", label: "GHEE_LOAD", color: "bg-amber-950/40 text-amber-500 border border-amber-500/20", desc: "Aged Basmati, Cow ghee portions, Honey..." },
-    { id: "pune-dairy", name: "Pune Household Dairy", label: "LACT_AVD", color: "bg-emerald-950/40 text-[#10b981] border border-emerald-500/20", desc: "Packet butter, Fermented yogurt..." }
-  ];
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-1 gap-2.5">

@@ -55,7 +55,7 @@ export const sampleData: Record<string, { items: any[]; totalCo2: number; explan
   }
 };
 
-export async function processReceiptScan({ imageBase64, mimeType, sampleId, rawText }: { imageBase64?: string; mimeType?: string; sampleId?: string; rawText?: string }) {
+export async function processReceiptScan({ imageBase64, mimeType, sampleId, rawText, gcsUrl }: { imageBase64?: string; mimeType?: string; sampleId?: string; rawText?: string; gcsUrl?: string }) {
   if (sampleId && sampleData[sampleId]) {
     return sampleData[sampleId];
   }
@@ -118,7 +118,6 @@ export async function processReceiptScan({ imageBase64, mimeType, sampleId, rawT
       };
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
     return matchedData;
   }
 
@@ -284,7 +283,6 @@ Your active **Carbon Twin** can simulate these zero-cost measures right now in t
 *Note: Scanning receipts automatically updates our Community Carbon Intelligence Node, helping your city climb the national leadership rankings.*`;
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 800));
     return { text: reply };
   }
 

@@ -5,6 +5,17 @@ import { AnalysisResult } from "../types";
 import { ScannerPresets } from "./ScannerPresets";
 import { ScannerPipeline } from "./ScannerPipeline";
 
+const getEcoColor = (rating: "A" | "B" | "C" | "D" | "E") => {
+  switch (rating) {
+    case "A": return "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30";
+    case "B": return "bg-green-500/10 text-green-400 border border-green-500/30";
+    case "C": return "bg-amber-500/10 text-amber-400 border border-amber-500/30";
+    case "D": return "bg-orange-500/10 text-orange-400 border border-orange-500/30";
+    case "E": return "bg-red-500/10 text-red-400 border border-red-500/40 animate-pulse";
+    default: return "bg-zinc-800 text-zinc-300 border border-zinc-750";
+  }
+};
+
 interface WorkspaceScannerProps {
   uploadProgress: string | null;
   dragActive: boolean;
@@ -58,17 +69,6 @@ export const WorkspaceScanner = React.memo(function WorkspaceScanner({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       handleFileProcessing(e.target.files[0]);
-    }
-  };
-
-  const getEcoColor = (rating: "A" | "B" | "C" | "D" | "E") => {
-    switch (rating) {
-      case "A": return "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30";
-      case "B": return "bg-green-500/10 text-green-400 border border-green-500/30";
-      case "C": return "bg-amber-500/10 text-amber-400 border border-amber-500/30";
-      case "D": return "bg-orange-500/10 text-orange-400 border border-orange-500/30";
-      case "E": return "bg-red-500/10 text-red-400 border border-red-500/40 animate-pulse";
-      default: return "bg-zinc-800 text-zinc-300 border border-zinc-750";
     }
   };
 

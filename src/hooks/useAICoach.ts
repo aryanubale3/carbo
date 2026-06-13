@@ -69,12 +69,13 @@ export function useAICoach(user: User | null, scanResultItems: ReceiptItem[]) {
     } catch (e) {
       console.error(e);
       setMessages(prev => {
-        const next = [...prev, {
+        const errorMsg: Message = {
           id: "msg-err-" + Date.now(),
           role: "model",
           content: "Network delay. Standard advice: Swapping cows butter for regional wood-pressed oils reduces weekly dairy fat indexes by **78%** instantly. Let me know if you would like me to lock this simulation lever in.",
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        }];
+        };
+        const next = [...prev, errorMsg];
         saveMessages(next);
         return next;
       });
