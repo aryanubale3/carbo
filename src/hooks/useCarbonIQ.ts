@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { ReceiptItem, AnalysisResult, Message, CityData, TabKey } from "../types";
+import { AnalysisResult, Message, CityData, TabKey } from "../types";
 import { useAuth } from "./useAuth";
 import { useTwinConfig } from "./useTwinConfig";
 import { useAICoach } from "./useAICoach";

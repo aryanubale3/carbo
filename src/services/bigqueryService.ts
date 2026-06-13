@@ -117,33 +117,3 @@ export async function getCityBenchmarks(): Promise<any[]> {
     ];
   }
 }
-
-export async function getCategoryDistribution(city: string): Promise<any[]> {
-  if (!bqClient) {
-    return [
-      { category: "Dairy", co2: 24.5 },
-      { category: "Grains", co2: 12.2 },
-      { category: "Produce", co2: 8.4 }
-    ];
-  }
-  try {
-    const query = `
-      SELECT category, SUM(co2) as co2
-      FROM \`${projectId}.${DATASET_ID}.${TABLE_ID}\`
-      WHERE city = @city
-      GROUP BY category
-      ORDER BY co2 DESC
-    `;
-    const [rows] = await bqClient.query({
-      query,
-      params: { city }
-    });
-    return rows.map((row) => ({
-      category: row.category,
-      co2: Number(row.co2)
-    }));
-  } catch (err) {
-    console.error("BigQuery Query Error (getCategoryDistribution):", err);
-    return [];
-  }
-}

@@ -6,7 +6,6 @@ import { createServer as createViteServer } from "vite";
 import { processReceiptScan, processChat } from "./src/services/geminiService";
 import { 
   insertReceiptTelemetry, 
-  initBigQuerySchema, 
   getCityBenchmarks 
 } from "./src/services/bigqueryService";
 
