@@ -4,11 +4,11 @@ import { startServer, app } from "../../../server";
 import { createServer as createViteServer } from "vite";
 
 vi.mock("vite", async (importOriginal) => {
-  const actual = await importOriginal<any>();
+  const actual = await importOriginal<Record<string, unknown>>();
   return {
     ...actual,
     createServer: vi.fn().mockResolvedValue({
-      middlewares: (_req: any, _res: any, next: any) => next()
+      middlewares: (_req: unknown, _res: unknown, next: () => void) => next()
     })
   };
 });
@@ -27,9 +27,9 @@ describe("Server Startup Unit Tests", () => {
 
   it("should start the server successfully in development mode", async () => {
     process.env.NODE_ENV = "development";
-    const listenMock = (vi.spyOn(app, "listen") as any).mockImplementation((_port: any, _host: any, cb: any) => {
-      if (cb) cb();
-      return {} as any;
+    const listenMock = vi.spyOn(app, "listen").mockImplementation((_port: unknown, _host: unknown, cb?: unknown) => {
+      if (typeof cb === "function") (cb as () => void)();
+      return {} as import("http").Server;
     });
 
     await startServer();
@@ -39,9 +39,9 @@ describe("Server Startup Unit Tests", () => {
 
   it("should start the server successfully in production mode", async () => {
     process.env.NODE_ENV = "production";
-    const listenMock = (vi.spyOn(app, "listen") as any).mockImplementation((_port: any, _host: any, cb: any) => {
-      if (cb) cb();
-      return {} as any;
+    const listenMock = vi.spyOn(app, "listen").mockImplementation((_port: unknown, _host: unknown, cb?: unknown) => {
+      if (typeof cb === "function") (cb as () => void)();
+      return {} as import("http").Server;
     });
 
     await startServer();

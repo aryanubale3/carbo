@@ -3,6 +3,8 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import request from 'supertest';
 import { app } from '../../../server';
 
+import { ReceiptItem } from '../../types';
+
 describe('CarbonIQ Full-Stack Integration & API Test Suite', () => {
   
   beforeAll(() => {
@@ -54,7 +56,7 @@ describe('CarbonIQ Full-Stack Integration & API Test Suite', () => {
       expect(response.status).toBe(200);
       expect(response.body.items.length).toBeGreaterThan(0);
       
-      const chickenItem = response.body.items.find((it: any) => it.name.toLowerCase().includes('chicken'));
+      const chickenItem = response.body.items.find((it: ReceiptItem) => it.name.toLowerCase().includes('chicken'));
       expect(chickenItem).toBeDefined();
       expect(chickenItem.category).toBe('Meat');
       expect(chickenItem.co2).toBe(3.5);

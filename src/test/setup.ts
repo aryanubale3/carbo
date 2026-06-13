@@ -5,7 +5,16 @@ import { cleanup } from '@testing-library/react';
 
 // Mock Framer Motion to render simple elements instantly in jsdom
 vi.mock('motion/react', () => {
-  const dummyComponent = React.forwardRef(({ children, ...props }: any, ref: any) => {
+  const dummyComponent = React.forwardRef<
+    HTMLDivElement,
+    React.ComponentPropsWithoutRef<'div'> & {
+      animate?: unknown;
+      initial?: unknown;
+      exit?: unknown;
+      transition?: unknown;
+      variants?: unknown;
+    }
+  >(({ children, ...props }, ref) => {
     // strip out framer-motion specific props to avoid HTML validation warnings
     const { animate, initial, exit, transition, variants, ...cleanProps } = props;
     return React.createElement('div', { ref, ...cleanProps }, children);
@@ -23,7 +32,7 @@ vi.mock('motion/react', () => {
       aside: dummyComponent,
       a: dummyComponent,
     },
-    AnimatePresence: ({ children }: any) => children,
+    AnimatePresence: ({ children }: { children: React.ReactNode }) => children,
   };
 });
 
@@ -36,8 +45,8 @@ vi.mock("../hooks/useAuth.tsx", () => {
       signInWithGoogle: vi.fn().mockResolvedValue(undefined),
       logOut: vi.fn().mockResolvedValue(undefined),
     }),
-    AuthProvider: ({ children }: any) => children,
-    ProtectedRoute: ({ children }: any) => children,
+    AuthProvider: ({ children }: { children: React.ReactNode }) => children,
+    ProtectedRoute: ({ children }: { children: React.ReactNode }) => children,
   };
 });
 
