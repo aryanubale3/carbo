@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono&family=Geist:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", monospace;
+}
+
+/* Custom design definitions corresponding lock-to-lock with Visual Principles */
+:root {
+  --color-bg: #09090B;
+  --color-surface: #111113;
+  --color-border: #1E1E24;
+  --color-primary-accent: #22C55E;
+  --color-secondary-accent: #3B82F6;
+  --color-text: #FAFAFA;
+  --color-muted: #A1A1AA;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Accessibility focusing styling outline */
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid var(--color-primary-accent);
+  outline-offset: 2px;
+}
+
+/* Custom minimalist scrollbars for premium product look and feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
+}
