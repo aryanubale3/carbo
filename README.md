@@ -3,8 +3,8 @@
 ### *India's Carbon Intelligence Network — Built One Receipt At A Time*
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg?style=for-the-badge&logo=github)](https://github.com/AryanUbale7/carbon)
-[![Tests Passing](https://img.shields.io/badge/tests-55%20%2F%2055%20passing-emerald.svg?style=for-the-badge&logo=vitest)](https://github.com/AryanUbale7/carbon)
-[![Coverage](https://img.shields.io/badge/Coverage-85.5%25-blue.svg?style=for-the-badge&logo=vitest)](https://github.com/AryanUbale7/carbon)
+[![Tests Passing](https://img.shields.io/badge/tests-48%20%2F%2048%20passing-emerald.svg?style=for-the-badge&logo=vitest)](https://github.com/AryanUbale7/carbon)
+[![Coverage](https://img.shields.io/badge/Coverage-84.96%25-blue.svg?style=for-the-badge&logo=vitest)](https://github.com/AryanUbale7/carbon)
 [![Google Cloud Stack](https://img.shields.io/badge/Google%20Cloud-Gemini%20%7C%20BigQuery%20%7C%20Firestore-4285F4.svg?style=for-the-badge&logo=google-cloud)](https://cloud.google.com)
 [![Firebase Framework](https://img.shields.io/badge/Firebase-Auth%20%7C%20Firestore%20%7C%20Storage-FFCA28.svg?style=for-the-badge&logo=firebase)](https://firebase.google.com)
 
@@ -93,8 +93,8 @@ CarbonIQ is engineered around premium enterprise cloud design patterns:
 ## 📈 Quality Metrics & Testing
 
 The repository maintains strict quality control and testing practices:
-* **Unit & Integration Suite**: Powered by **Vitest** running 55 assertions checking endpoint security, Gemini localized offline fallbacks, and bigquery schemas.
-* **Coverage Mandate**: **85.5% Line Coverage** verified using `v8` coverage configurations.
+* **Unit & Integration Suite**: Powered by **Vitest** running 48 assertions checking endpoint security, Gemini localized offline fallbacks, and bigquery schemas.
+* **Coverage Mandate**: **84.96% Line Coverage** verified using `v8` coverage configurations.
 
 ---
 
@@ -113,7 +113,7 @@ carbon/
 ├── scripts/
 │   └── migrate-bq.ts        # Database migration script creating BigQuery schemas
 └── src/
-    ├── App.tsx              # Main layout containing React.lazy tab Suspense hooks
+    ├── App.tsx              # Main layout containing statically loaded tab components
     ├── components/          # Memoized layout components
     │   ├── Sidebar.tsx
     │   ├── CarbonTwin.tsx
